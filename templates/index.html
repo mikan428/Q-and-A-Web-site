@@ -1,0 +1,174 @@
+   {% extends 'base.html'  %}
+
+   {% load static %}
+
+   {% block title %}
+      最速質問：猫の手
+   {% endblock %}
+   
+
+
+   {% block header %}
+   <script src="{% static 'vendor/bootstrap/js/swiper.min.js' %}"></script>
+   <script src="{% static 'vendor/bootstrap/js/hero-slider.js' %}"></script>
+   <script src="{% static 'vendor/bootstrap/js/main.js' %}"></script>
+
+
+
+
+   <div id="global-container">
+      <div id="container">
+        <div id="content">
+          <div class="hero">
+            <div class="swiper-container">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  
+                  <img src="{% static 'img/77d59c126f1046f928d34.jpg' %}" alt="" >
+                </div>
+                <div class="swiper-slide">
+                 
+                  <img src="{% static 'img/roginjaanhbgvhcjs.jpg' %}" alt="">
+                </div>
+                <div class="swiper-slide">
+                  
+                  <img src="{% static 'img/jahnchssskkahasncsych.jpg' %}" alt="">
+                </div>
+              </div>
+             
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+   
+   
+   {% endblock %}
+  
+   {% block contents %}
+   <header class="daimei">
+      <h1>最新質問：急募質問</h1>
+   </header>
+   <div class="divide">
+      
+      <article>
+       
+            
+         <section>
+         <div class="container" id="pon">
+            
+
+            {% for diary in diary %}
+            
+            <div class="post-preview">
+               <a href="{% url 'ampapp:diary_detail' diary.pk diary.id %}">
+                 
+                  <h1 class="post-title">
+                  {{ diary.title }}
+                  </h1>
+               
+                  <h2 class="post-subtitle">
+                  {{ diary.content|truncatechars:20 }}
+                  </h2>
+                  
+               </a>
+               
+               <p class="post-meta">{{ diary.created_at }}</p>
+            </div>
+            <hr>
+            
+            
+            {% endfor %}
+         
+         </div>
+         </section>
+         <header class="daimei2">
+            <h1>人間関係</h1>
+         </header>
+         <section>
+            <div class="container">
+            
+            
+               {% for lifeq in life %}
+               <div class="post-preview" id="poon">
+                  <a href="{% url 'ampapp:life_detail' lifeq.pk lifeq.id %}">
+                        <h1 class="post-title">
+                        {{lifeq.name}}    
+                        </h1>
+                        <h2 class="post-title">
+                        {{lifeq.title }}
+                     </h2>
+                     
+                     <h3 class="post-subtitle">
+                        {{ lifeq.content|truncatechars:20 }}
+                     </h3>
+                     
+                  </a>
+                  
+                  <p class="post-meta">{{lifeq.created_at }}</p>
+               </div>
+               <hr>
+               
+              
+               {% endfor %}
+            
+            </div>       
+         
+         </section>
+      
+      </article>
+
+      <aside>
+          <h1 class="sub-title">カテゴリー</h1>
+          <ul class="sub-menu">
+             <li><a href="{% url 'ampapp:life_list' %}">人間関係</a></li>
+               <p>恋愛 / 出会い </p>
+               <p>学校の悩み / 職場の悩み / 家族の悩み </p>
+
+             <li><a href="{% url 'ampapp:science_list' %}">日常科学</a></li>
+               <p>生活現象  / 食生活   </p>
+               <p>動物の行動/ アレルギー / 害虫</p>
+             
+            <li><a href="{% url 'ampapp:hobby_list' %}">趣味</a></li>
+               <p>美術・アート / グッズ </p>
+               <p>アウトドア / 車 / 旅行 </p>
+
+             <li><a href="{% url 'ampapp:talent_list' %}">タレント・芸能</a></li>
+               <p>芸能人 / アイドル</p>
+
+             <li><a href="{% url 'ampapp:work_list' %}">作品</a></li>
+               <p>映画 / ドラマ</p>
+               <p>アニメ / マンガ</p>
+               
+
+             <li><a href="{% url 'ampapp:game_list' %}">ゲーム</a></li>
+               <p>オンラインゲーム / カードゲーム</p>
+               <p>ゲーム機器 </p>
+
+             <li><a href="{% url 'ampapp:study_list' %}">学習</a></li>
+               <p>勉学・勉強法 /資格 </p>
+              
+             <li><a href="{% url 'ampapp:health_list' %}">健康</a></li>
+             <p>病気/ 怪我 </p>
+               <p> 肌のトラブル/ 歯 / 美容 / 薄毛・AGA </p>
+
+             <li><a href="{% url 'ampapp:future_list' %}">将来</a></li>
+             <p>就職・転職・倒産 </p>
+               <p>不必要になるモノ / 必要となるモノ </p>
+            
+             <li><a href="{% url 'ampapp:occult_list' %}">オカルト</a></li>
+               <p> 都市伝説/ 閲覧禁止事項</p>
+               <p>UFO/ UMA / 心霊現象</p>
+               <p> 陰謀論/ 未来予測 </p>
+
+            <li><a href="{% url 'ampapp:joke_list' %}">ネタ</a></li>
+               <p>面白い画像 /面白話 </p>
+
+             
+
+          </ul>
+      </aside>
+   </div>
+   {% endblock %}
+

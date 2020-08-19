@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}お問い合わせ | Private Diary{% endblock %}
+
+{% block active_inquiry %}active{% endblock %}
+
+{% block contents %}
+
+
+<div>   {{ current_diary.user }}  </div>
+<div>
+        <table>
+         {% for diary in object_list %}
+             <tr><td>   {{ diary.title }}   </td></tr>
+         {% endfor %}
+         </table>
+         
+</div>
+
+<div>
+    {% for diary in diary_list %}
+    {{ diary.content|truncatechars:20 }}
+
+    {% endfor %}
+</div>
+{% endblock %} 

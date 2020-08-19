@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}健康の質問作成{% endblock %}
+
+{% block active_health_list %}active{% endblock %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block contents %}
+<div class="container">
+<div class="divide">
+<article>
+    <div class="row">
+        <div class="my-div-style w-100">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                
+                <div class="clearfix">
+                    <a class="btn btn-primary float-right" href="{% url 'ampapp:health_create'%}">新規作成</a>
+                </div>
+                {% load ampapp_extras %}
+                {% for healthq in health_list %}
+                    <div class="post-preview">
+                        <a href="{% url 'ampapp:health_detail' healthq.pk healthq.id %}">
+                          <h2 class="post-title">
+                            {{ healthq.title }}
+                          </h2>
+                          
+                          <h3 class="post-subtitle">
+                            {{ healthq.content|truncatechars:20 }}
+                          </h3>
+                        
+                        </a>
+                        
+                        <p class="post-meta">{{ healthq.created_at }}</p>
+                       
+                    </div>
+                    <hr>
+                {% empty %}
+                    <p>質問がありません。</p>
+                {% endfor %}
+
+                <!-- ページネーション処理 -->
+                {% if is_paginated %}
+                    <ul class="pagination">
+                        <!-- 前ページへのリンク -->
+                        {% if page_obj.has_previous %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                        {% endif %}
+
+                        <!-- ページ数表示 -->
+                        {% for page_num in page_obj.paginator.page_range %}
+                            {% if page_obj.number == page_num %}
+                                <li class="page-item active"><a class="page-link" href="#">{{ page_num }}</a></li>
+                            {% else %}
+                                <li class="page-item"><a class="page-link" href="?page={{ page_num }}">{{ page_num }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+
+                        <!-- 次ページへのリンク -->
+                        {% if page_obj.has_next %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ page_obj.next_page_number }}">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                {% endif %}
+
+               
+                
+            </div>
+        </div>
+    </div>
+</article>
+<aside>
+    <h1 class="sub-title">カテゴリー</h1>
+    <ul class="sub-menu">
+       <li><a href="{% url 'ampapp:life_list' %}">人間関係</a></li>
+         <p>恋愛 / 出会い </p>
+         <p>学校の悩み / 職場の悩み / 家族の悩み </p>
+
+       <li><a href="{% url 'ampapp:science_list' %}">日常科学</a></li>
+         <p>生活現象  / 食生活   </p>
+         <p>動物の行動/ アレルギー / 害虫</p>
+       
+      <li><a href="{% url 'ampapp:hobby_list' %}">趣味</a></li>
+         <p>美術・アート / グッズ </p>
+         <p>アウトドア / 車 / 旅行 </p>
+
+       <li><a href="{% url 'ampapp:talent_list' %}">タレント・芸能</a></li>
+         <p>芸能人 / アイドル</p>
+
+       <li><a href="{% url 'ampapp:work_list' %}">作品</a></li>
+         <p>映画 / ドラマ</p>
+         <p>アニメ / マンガ</p>
+         
+
+       <li><a href="{% url 'ampapp:game_list' %}">ゲーム</a></li>
+         <p>オンラインゲーム / カードゲーム</p>
+         <p>ゲーム機器 </p>
+
+       <li><a href="{% url 'ampapp:study_list' %}">学習</a></li>
+         <p>勉学・勉強法 /資格 </p>
+        
+       <li><a href="{% url 'ampapp:health_list' %}">健康</a></li>
+       <p>病気/ 怪我 </p>
+         <p> 肌のトラブル/ 歯 / 美容 / 薄毛・AGA </p>
+
+       <li><a href="{% url 'ampapp:future_list' %}">将来</a></li>
+       <p>就職・転職・倒産 </p>
+         <p>不必要になるモノ / 必要となるモノ </p>
+      
+       <li><a href="{% url 'ampapp:occult_list' %}">オカルト</a></li>
+         <p> 都市伝説/ 閲覧禁止事項</p>
+         <p>UFO/ UMA / 心霊現象</p>
+         <p> 陰謀論/ 未来予測 </p>
+
+      <li><a href="{% url 'ampapp:joke_list' %}">ネタ</a></li>
+         <p>面白い画像 /面白話 </p>
+
+       
+
+    </ul>
+</aside>
+</div>
+</div>
+{% endblock %}

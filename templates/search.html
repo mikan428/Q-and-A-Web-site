@@ -1,0 +1,35 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}ゲーム{% endblock %}
+
+{% block active_game_list %}active{% endblock %}
+
+{% block head %}
+<link href="{% static 'css/clean-blog.min.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block contents %}
+<div class="container">
+    {% if blog %}
+    {% for blog in blog %}
+    <div class="search">
+      <ul>
+          <li>
+              {{ blog.created_at }}
+              {{ blog.title }}
+              <a href="{% url 'ampapp:diary_detail' blog.pk blog.id %}">☞詳細</a>
+          </li>
+       </ul>
+    </div>
+    
+
+    {% endfor %}
+    {% else %}
+       <div class="ui segment warning message">
+              <p>検索結果はありません。</p>
+       </div>
+    {% endif %}
+</div>
+{% endblock %}

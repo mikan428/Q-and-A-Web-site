@@ -1,0 +1,204 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}急募質問 | Private Diary{% endblock %}
+
+{% block active_diary_list %}active{% endblock %}
+
+
+{% block contents %}
+<div class="container">
+<div class="divide">
+<article>
+    <div class="my-div-style w-100">
+        
+          
+            <div  class="col-3" >
+                <strong>名前</strong>
+            </div>
+            <div class="col-9">
+                {{ object.name }}
+            </div>
+        
+        <hr>
+        <div class="row">
+            
+            <div class="col-3">
+                <strong>タイトル</strong>
+            </div>
+            <div class="col-9">
+                {{ object.title }}
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+            <div class="col-3">
+                <strong>本文</strong>
+            </div>
+            <div class="col-9">
+                {{ object.content|linebreaksbr }}
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+            
+            <div class="col-3">
+                {% if object.photo1 %}
+                    <img src="{{ object.photo1.url }}" width="200" height="200"/>
+                {% endif %}
+            </div>
+            <div class="col-3">
+                {% if object.photo2 %}
+                    <img src="{{ object.photo2.url }}" width="200" height="200"/>
+                {% endif %}
+            </div>
+            <div class="col-3">
+                {% if object.photo3 %}
+                    <img src="{{ object.photo3.url }}" width="200" height="200"/>
+                {% endif %}
+            </div>
+        </div>
+        <div class="ichiran">回答一覧</div>
+        {% if check %}
+        <a class="btn btn-primary float-right" href="{% url 'ampapp:answer' object.pk object.id %}">回答する</a>
+        {% else %}
+        <div class="shimekiri">回答は締め切りました</div>
+        {% endif %}
+        
+        
+
+        
+       
+       
+
+        {% load ampapp_extras %}
+
+        {% for answer in object.answer_set.all %}
+            
+        <div class="kaito">
+            <div class="row">
+                
+                <div class="col-3">
+                    <strong>適当な名前</strong>
+                </div>
+                <div class="col-9">
+                    {{forloop.counter}}:{{ answer.name }}
+                </div>
+            </div>
+
+            <hr>
+            
+            <div class="row">
+                
+                <div class="col-3">
+                    <strong>内容</strong>
+                </div>
+                <div class="col-9">
+                    {{ answer.content }}
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="row">
+                
+               
+                <div class="col-9">
+                <div class="gazo">
+                    {% if answer.photo1 %}
+                    <img src="{{ answer.photo1.url }}"/>
+                    {% endif %}
+                </div>
+                </div>
+            </div>
+
+            <hr>
+        </div>
+
+
+
+
+           
+
+            
+
+            <!-- <h5>{{answer.read}}</h5> -->
+        
+       
+        
+                
+       
+        {% endfor %}
+
+
+        
+
+            
+        
+        
+        
+       
+        
+    
+    </div>
+</article>
+<aside>
+    <h1 class="sub-title">カテゴリー</h1>
+    <ul class="sub-menu">
+       <li><a href="{% url 'ampapp:life_list' %}">人間関係</a></li>
+         <p>恋愛 / 出会い </p>
+         <p>学校の悩み / 職場の悩み / 家族の悩み </p>
+
+       <li><a href="{% url 'ampapp:science_list' %}">日常科学</a></li>
+         <p>生活現象  / 食生活   </p>
+         <p>動物の行動/ アレルギー / 害虫</p>
+       
+      <li><a href="{% url 'ampapp:hobby_list' %}">趣味</a></li>
+         <p>美術・アート / グッズ </p>
+         <p>アウトドア / 車 / 旅行 </p>
+
+       <li><a href="{% url 'ampapp:talent_list' %}">タレント・芸能</a></li>
+         <p>芸能人 / アイドル</p>
+
+       <li><a href="{% url 'ampapp:work_list' %}">作品</a></li>
+         <p>映画 / ドラマ</p>
+         <p>アニメ / マンガ</p>
+         
+
+       <li><a href="{% url 'ampapp:game_list' %}">ゲーム</a></li>
+         <p>オンラインゲーム / カードゲーム</p>
+         <p>ゲーム機器 </p>
+
+       <li><a href="{% url 'ampapp:study_list' %}">学習</a></li>
+         <p>勉学・勉強法 /資格 </p>
+        
+       <li><a href="{% url 'ampapp:health_list' %}">健康</a></li>
+       <p>病気/ 怪我 </p>
+         <p> 肌のトラブル/ 歯 / 美容 / 薄毛・AGA </p>
+
+       <li><a href="{% url 'ampapp:future_list' %}">将来</a></li>
+       <p>就職・転職・倒産 </p>
+         <p>不必要になるモノ / 必要となるモノ </p>
+      
+       <li><a href="{% url 'ampapp:occult_list' %}">オカルト</a></li>
+         <p> 都市伝説/ 閲覧禁止事項</p>
+         <p>UFO/ UMA / 心霊現象</p>
+         <p> 陰謀論/ 未来予測 </p>
+
+      <li><a href="{% url 'ampapp:joke_list' %}">ネタ</a></li>
+         <p>面白い画像 /面白話 </p>
+
+       
+
+    </ul>
+</aside>
+</div>
+</div>
+
+
+
+{% endblock %}

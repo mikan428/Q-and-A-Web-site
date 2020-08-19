@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}日記詳細 | Private Diary{% endblock %}
+
+{% block active_diary_list %}active{% endblock %}
+
+
+{% block contents %}
+<div class="container">
+    <div class="my-div-style w-100">
+        <div class="row">
+            <div class="col-3">
+                <strong>タイトル</strong>
+            </div>
+            <div class="col-9">
+                {{ object.title }}
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+            <div class="col-3">
+                <strong>本文</strong>
+            </div>
+            <div class="col-9">
+                {{ object.content|linebreaksbr }}
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+            <div class="col-3">
+                <strong>写真</strong>
+            </div>
+            <div class="col-3">
+                {% if object.photo1 %}
+                    <img src="{{ object.photo1.url }}" width="200" height="200"/>
+                {% endif %}
+            </div>
+            <div class="col-3">
+                {% if object.photo2 %}
+                    <img src="{{ object.photo2.url }}" width="200" height="200"/>
+                {% endif %}
+            </div>
+            <div class="col-3">
+                {% if object.photo3 %}
+                    <img src="{{ object.photo3.url }}" width="200" height="200"/>
+                {% endif %}
+            </div>
+        </div>
+        <h2>コメント一覧</h2>
+        <a href="{% url 'ampapp:answer' diary.pk %}">コメントする</a>
+        
+        <h3>aaaaa</h3>
+
+   
+
+        {% for answer in object.answer_set.all %}
+        
+            <h3>{{ answer.user }}</h3>
+            <h4>{{forloop.counter}}:{{ answer.content }}</h4>
+            <!-- <a class="btn btn-primary float-right" href="{% url 'ampapp:ine' pk=answer.pk  %}"></a> -->
+
+            {% if ine_flag %}
+            <div  class="on mt-5" data-href="{% url 'ampapp:ine' answer.pk %}">
+            {% else %}
+            <div  class="mt-5" data-href="{% url 'ampapp:ine' answer.pk %}">
+            {% endif %}
+            <span>この記事をいいね！と思った方はぜひ押していってください！</span><br>
+            <i class="far fa-thumbs-up"></i> 
+            <!-- <button id = "mirai.{{forloop.counter}}">リストボタン番号={{forloop.counter}}:</button> -->
+            <button  id="mirai{{forloop.counter}}" class="mirai" data-id="{{forloop.counter}}">ボタン{{ answer.read }}</button>
+            <span class="ine-count{{forloop.counter}}">()</span>
+            <span class="ine-msg{{forloop.counter}}"></span>
+            
+            </div>
+            </div>
+
+            
+                   
+                
+            
+               
+        {% endfor %}
+
+
+        <input id = "button1" type="button" value="test1"/>
+      
+
+            
+        
+        
+        
+       
+        
+    
+    </div>
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,144 @@
+body,#wrapper{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow: auto;
+}
+
+footer{
+    margin-top: auto;
+}
+
+
+.my-div-style{
+   margin-top: 6rem;
+}
+
+.userjo{
+    margin-top: 7rem;
+}
+
+.divide{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 50px;
+    margin-top: 60px;
+
+}
+
+
+.search a{
+    color: blueviolet;
+    font-size: 1.7rem;
+
+}
+
+
+article{
+    width: 74%;
+}
+
+#pon{
+    text-align: center;
+}
+#poon{
+    text-align: center;
+}
+
+.daimei2 h1 {
+    margin-top: 50px ;
+    margin-right: 100px;
+
+
+}
+.daimei h1 {
+    margin-top: 50px;
+    margin-right: 100px;
+
+
+}
+
+
+aside{
+    width: 22%;
+    
+}
+
+aside  ul li a{
+    font-size: 1.7rem;
+}
+
+
+
+#tkg{
+    color: aqua;
+    
+}
+
+
+.sakusei{
+color: red;
+}
+
+.navbar-custom {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    background-color: rgba(35, 9, 129, 0.56);
+  }
+
+  .btn {
+    display: inline-block;
+    font-weight: 400;
+    color: #080c4b;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: chartreuse;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .55rem;
+    transition: color .15s
+  }
+
+.ichiran{
+    margin-top: 30px;
+    font-size: 1.3rem;
+}
+
+  .shimekiri{
+      font-size: 1.5rem;
+      color: darkgoldenrod;
+  }
+.kaito{
+    margin-top: 50px;
+}
+
+#sumaho{
+      display: none;
+  }
+
+.gazo{
+    width: 100%;
+}
+
+.sub-title{
+    margin-top: 40px;
+}
+
+ @media (max-width: 992px) {
+    aside{
+         display: none;
+    }
+    article{
+        width: 100%;
+    }
+
+    #sumaho{
+        display: block;
+    }
+  }

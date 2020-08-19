@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+
+
+{% load static %}
+
+{% block active_game_list %}active{% endblock %}
+
+{% block head %}
+<link href="{% static 'css/clean-blog.min.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block contents %}
+
+
+<!-- <div class="container">
+    <div class="userjo">
+          <h1>過去の質問歴</h1>
+          {% for doto in result %}
+          {{doto.content}}
+          {% endfor %}
+     {% for doto in result %}
+          
+        <div class="post-preview">
+            <a href="#">
+              <h2 class="post-title">
+                {{ doto.title }}
+              </h2>
+              <h3 class="post-subtitle">
+                {{ doto.content|truncatechars:20 }}
+              </h3>
+            </a>
+            <p class="post-meta">{{ doto.created_at }}</p>
+        <div class="clearfix">
+                <a class="btn btn-primary float-right" href="{% url 'ampapp:diary_create'%}">ベストアンサーに</a>
+        </div>
+        </div>
+        
+     {% empty %}
+          <p>日記がありません。</p>
+     {% endfor %}
+     <h4>回答だよ</h4>
+     {% for answer in obj_list %}
+          
+        <div class="post-preview">
+            
+            <a href="#">
+              <h2 class="post-title">
+                {{ answer.title }}
+              </h2>
+              <h3 class="post-subtitle">
+                {{ answer.content|truncatechars:20 }}
+              </h3>
+            </a>
+            <p class="post-meta">{{ answer.created_at }}</p>
+        <div class="clearfix">
+                <a class="btn btn-primary float-right" href="{% url 'ampapp:diary_create'%}">ベストアンサーに</a>
+        </div>
+        </div>
+        
+
+     {% empty %}
+          <p>日記がありません。</p>
+     {% endfor %}
+    </div>
+</div> -->
+
+<div class="container">
+  <div class="row">
+      <div class="my-div-style w-100">
+          <div class="col-lg-8 col-md-10 mx-auto">
+              <div class="clearfix">
+                  <a class="btn btn-primary float-right" href="#">うんこ</a>
+              </div>
+              {% for todo in page_obj %}
+                  <div class="post-preview">
+                     
+                        <h2 class="post-title">
+                          {{ todo.title }}
+                        </h2>
+                        
+                        <h3 class="post-subtitle">
+                          {{ todo.content|truncatechars:20 }}
+                        </h3>
+                      
+                      </a>
+                      
+                      <p class="post-meta">{{ todo.created_at }}</p>
+                      
+                      <button class = "akari">{{todo.good}}</button> 
+                  </div>
+                  <hr>
+              {% empty %}
+                  <p>日記がありません。</p>
+              {% endfor %}
+              <div>
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        {% if page_obj.has_previous %}
+                            <li><a class="page-link text-primary d-inline-block" href="?page={{ page_obj.previous_page_number }}">前</a></li>
+                        {% else %}
+                            <li class="disabled"><div class="page-link text-secondary d-inline-block disabled" href="#">前</div></li>
+                        {% endif %}
+            
+                        {% for link_page in page_obj.paginator.page_range %}
+                            {% if link_page %}
+                                {% if link_page == page_obj.number %}
+                                    <li class="disabled"><div class="page-link text-secondary d-inline-block disabled" href="#">{{ link_page }}</div></li>
+                                {% else %}
+                                    <li><a class="page-link text-primary d-inline-block" href="?page={{ link_page }}">{{ link_page }}</a></li>
+                                {% endif %}
+                            {% else %}
+                                <li class="disabled"><a class="page-link text-secondary d-inline-block text-muted" href="#">・・・</a></li>
+                            {% endif %}
+                        {% endfor %}
+            
+                        {% if page_obj.has_next %}
+                            <li><a class="page-link text-primary d-inline-block" href="?page={{ page_obj.next_page_number }}">次</a></li>
+                        {% else %}
+                            <li class="disabled"><div class="page-link text-secondary d-inline-block disabled" href="#">次</div></li>
+                        {% endif %}
+                    </ul>
+                </nav>
+             </div>
+          </div>
+      </div>
+  </div>
+</div>
+{% endblock %}
+    
+
+              
